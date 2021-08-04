@@ -1,0 +1,23 @@
+// 生成ca证书
+cd selfcert/ca
+openssl
+genrsa -out ca.key 2048
+req -new -x509  -days 3650 -key ca.key -out ca.pem
+# common name填写localhost
+
+
+// 重新生成服务端证书
+openssl
+genrsa -out server.key 2048
+req -new -key server.key -out server.csr
+# common name填写local host
+
+x509 -req -sha256 -CA ca.pem -CAkey ca.key -CAcreateserial -days 3650 -in server.csr -out server.pem
+
+
+// 生成客户端证书
+
+openssl
+ecparam -genkey -name secp384r1 -out client.key
+req -new -key client.key -out client.csr
+x509 -req -sha256 -CA ca.pem -CAkey ca.key -CAcreateserial -days 3650 -in client.csr -out client.pem

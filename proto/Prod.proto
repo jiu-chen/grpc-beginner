@@ -4,10 +4,10 @@ option go_package ="../services";
 
 // 导入其他文件需要写全路径
 import "proto/Models.proto";
-// import "google/api/annotations.proto";
+import "google/api/annotations.proto";
 
 // 编译proto文件
-// protoc protos/*.proto --go_out=plugins=grpc:./services
+// protoc proto/*.proto --go_out=plugins=grpc:./services
 
 
 enum ProdArea {
@@ -42,9 +42,9 @@ message ProdResponseList{
 service ProdService {
     rpc GetProdStock(ProdRequest) returns (ProdResponse){
         // fail
-        // option (google.api.http) = {
-        //     get: "v1/prod/{prod_id}"
-        // };
+         option (google.api.http) = {
+             get: "v1/prod/{prod_id}"
+         };
     }
     rpc GetProdStocks(QuerySize) returns (ProdResponseList){}
     rpc GetProdInfo(ProdRequest) returns (ProdModel){}

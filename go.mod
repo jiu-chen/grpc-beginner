@@ -1,4 +1,4 @@
-module grpc_server
+module hi-grpc
 
 go 1.16
 

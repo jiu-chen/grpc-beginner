@@ -2,6 +2,9 @@
 
 ## run
 ``` shell
-$ go run ./server/main.go
-$ GODEBUG=x509ignoreCN=0 go run ./client/main.go 
+$ cd server 
+$ go run main.go
+
+$ cd client
+$ GODEBUG=x509ignoreCN=0 go run main.go 
 ```
