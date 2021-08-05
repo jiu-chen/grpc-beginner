@@ -1,0 +1,22 @@
+syntax="proto3";
+package services;
+option go_package ="../services";
+
+// 编译proto文件
+// protoc proto/*.proto --go_out=plugins=grpc:./services
+
+
+message ProdRequest {
+    int32 prod_id=1;  //商品id
+}
+
+// 限定修饰符① | 数据类型② | 字段名称③ | = | 字段编码值④ | [字段默认值⑤]
+// protobuf 建议把经常要传递的值把其字段编码设置为1-15之间的值。
+message ProdResponse{
+    int32 prod_stock=1; //商品库存
+}
+
+service ProdService {
+    rpc GetProdStock(ProdRequest) returns (ProdResponse){}
+}
+

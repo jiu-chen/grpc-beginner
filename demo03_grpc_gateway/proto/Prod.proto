@@ -1,0 +1,28 @@
+syntax="proto3";
+package services;
+option go_package ="../services";
+
+// 导入其他文件需要写全路径
+import "google/api/annotations.proto";
+
+// 编译proto文件
+// protoc proto/*.proto --go_out=plugins=grpc:./services
+
+
+message ProdRequest {
+    int32 prod_id=1;  //商品id
+}
+
+message ProdResponse{
+    int32 prod_stock=1; //商品库存
+}
+
+
+service ProdService {
+    rpc GetProdStock(ProdRequest) returns (ProdResponse){
+         option (google.api.http) = {
+             get: "/v1/prod/{prod_id}"
+         };
+    }
+}
+
