@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"sync"
 
 	"demo06/services"
 
@@ -31,6 +32,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	var wg sync.WaitGroup
 	for {
 		resp, err := stream.Recv()
 		if err == io.EOF {
@@ -42,9 +44,13 @@ func main() {
 		// fmt.Println(resp)
 
 		// 这里可以开协程去处理一个批次
+		wg.Add(1)
 		go func(resp *services.UserScoreResponse) {
+			defer wg.Done()
 			fmt.Println(resp)
 		}(resp)
 	}
+	wg.Wait() // 等待协程全部完成
+	fmt.Println("main exit")
 
 }
