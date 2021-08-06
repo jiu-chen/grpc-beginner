@@ -23,6 +23,12 @@ go run httpserver.go
 curl -H "Content-Type: application/json" -X POST -d '{"order_id":34,"order_no":"bj00123456","user_id":8901,"order_money":34.12}' "http://localhost:8080/v1/orders"
 ```
 
+> client 调用
+```bash
+cd client
+go run main.go
+```
+
 > server log
 ``` go
 2021/08/06 13:46:45 grpc server starts...

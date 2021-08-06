@@ -3,8 +3,9 @@ package services
 import (
 	"context"
 	"fmt"
-	"github.com/golang/protobuf/ptypes"
 	"log"
+
+	"github.com/golang/protobuf/ptypes"
 )
 
 type OrdersService struct {
