@@ -2,8 +2,12 @@ syntax="proto3";
 
 package services;
 option go_package="../services";
-import "Models.proto";
 
+// User模型
+message UserInfo {
+    int32 user_id=1;
+    int32 user_score=2;
+}
 
 message UserScoreRequest {
     repeated UserInfo users=1;
